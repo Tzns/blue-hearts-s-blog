@@ -1,0 +1,51 @@
+<div class="page-sidebar-wrapper" >
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px;height:1000px">
+            <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+            <li class="sidebar-search-wrapper">
+                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                    <a href="javascript:;" class="remove">
+                        <i class="icon-close"></i>
+                    </a>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索...">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
+                    </div>
+                </form>
+
+            </li>
+            <% @menuModels.select {|s| s[:pid]==0}.sort_by{|s| s[:id]}.each do |s|%>
+            <% subs=@menuModels.select {|a| a[:pid]==s[:id]}%>
+                <% if subs.length!=0 %>
+                <li class="nav-item <%=s[:Active]!=nil ? 'start active open' : ''%>">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa <%=s[:ico]%>"></i>
+                        <span class="title"><%=s[:name]%></span>
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <% subs.sort_by{|s| s[:id]}.each do |a|%>
+                            <li class="nav-item <%=a[:Active]!=nil ? 'start active open' : ''%>">
+                                <a href="<%="/#{a[:controller]}/#{a[:action]}"%>" class="nav-link ">
+                                    <i class="fa fa-caret-right"></i>
+                                    <span class="title"> <%=a[:name]%></span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                        <% end %>
+                    </ul>
+                </li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>

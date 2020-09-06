@@ -1,0 +1,63 @@
+
+<%= stylesheet_link_tag "/assets/global/plugins/editor.md/css/editormd.min.css"  %>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="portlet light bordered">
+            <%= render 'layouts/box_title' ,title:"查询条件",fuTitle:"",i:"icon-settings font-dark"%>
+            <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top:10px;">
+                            <label class="control-label" style="float:left;margin-right:20px;">关键字</label>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="input-icon right">
+                                <i class="fa fa-users"></i>
+                                <input type="text" ms-duplex="@input.key" class="form-control input-circle" placeholder="标题，文章内容"> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-left" style="margin-top:10px;">
+                            <button type="button" id="findBtn" ms-click="@getData()" class="btn blue">
+                                查找
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px">
+        <div class="portlet light bordered">
+           
+            <div class="btn-group btn-group-solid btn-group-sm">
+                
+                <button type="button" ms-click="@add_update.add" class="btn green">新增文章</button>
+                
+            </div>
+            <div class="table-scrollable">
+
+                <table class="table table-bordered table-striped table-hover" id="branchTable">
+                    <thead>                          
+                        <tr>
+                            <th>标题</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-for="s in @data">
+                            <td style="width:80%;text-align:left;">{{s.title}}</td>
+                            <td>
+                                <div class="btn-group btn-group-solid btn-group-sm">
+                                    <button type="button" ms-click="@add_update.update(s)" class="btn blue">修改</button>
+                                    <button type="button" ms-click="@add_update.del(s)" class="btn red">删除</button>
+                                </div>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center" id="example"></div>
+        </div>
+    </div>
+</div>
+<%= render 'back/word_add_update' %>
+<%= javascript_include_tag "/assets/global/plugins/editor.md/editormd.min.js"  %>

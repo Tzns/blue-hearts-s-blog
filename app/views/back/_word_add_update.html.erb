@@ -1,0 +1,39 @@
+
+<div class="modal fade" id="word_add_update_box"  role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="width:80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">{{@add_update.title}}文章</h4>
+                <span class="caption-subject font-blue-sharp sbold"></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="bold uppercase font-dark">标题：</label>
+                            <div class="input-icon right">
+                                <input ms-duplex="@add_update.input.title" type="text" class="form-control"> 
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-12">
+                        <div id="word_editor">
+                            <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+                            <textarea ms-duplex="@add_update.input.content" style="display:none;"></textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button  type="button" ms-click="@add_update.submit" class="btn btn-primary ladda-button">
+                    <span class="ladda-label">保存</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

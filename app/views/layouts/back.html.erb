@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
+Version: 4.7
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="widtsrc=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="widtsrc=device-width, initial-scale=1" name="viewport" />
+  <meta content="" name="description" />
+  <meta content="" name="author" />
+  <title>博客管理平台</title>
+
+  <%= stylesheet_link_tag "/assets/global/plugins/font-awesome/css/font-awesome.min.css" %>
+
+    <%= stylesheet_link_tag "/assets/global/plugins/simple-line-icons/simple-line-icons.min.css"  %>
+    <%= stylesheet_link_tag "/assets/global/plugins/bootstrap/css/bootstrap.min.css"  %>
+    <%= stylesheet_link_tag "/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"  %>
+
+    <%= stylesheet_link_tag "/assets/global/plugins/morris/morris.css"  %>
+    <%= stylesheet_link_tag "/assets/global/plugins/fullcalendar/fullcalendar.min.css"  %>
+    <%= stylesheet_link_tag "/assets/global/plugins/jqvmap/jqvmap/jqvmap.css"  %>
+    <%= stylesheet_link_tag "/assets/global/css/components.min.css"  %>
+    <%= stylesheet_link_tag "/assets/global/css/plugins.min.css"  %>
+    <%= stylesheet_link_tag "/assets/layouts/layout/css/layout.min.css"  %>
+    <%= stylesheet_link_tag "/assets/layouts/layout/css/themes/default.min.css"  %>
+    <%= stylesheet_link_tag "/assets/layouts/layout/css/custom.min.css"  %>
+    
+    
+    
+
+    <%= javascript_include_tag "/assets/global/plugins/jquery.min.js"  %>
+    <%= javascript_include_tag "/assets/global/plugins/bootstrap/js/bootstrap.min.js"  %>
+    <%= javascript_include_tag "/assets/global/plugins/js.cookie.min.js"  %>
+    <%= javascript_include_tag "/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"  %>
+    <%= javascript_include_tag "/assets/global/plugins/jquery.blockui.min.js"  %>
+    <%= javascript_include_tag "/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"  %>
+    <%= javascript_include_tag "/assets/global/plugins/moment.min.js"  %>
+        
+
+    <%= javascript_include_tag "/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js"  %>
+    <%= stylesheet_link_tag "/assets/global/plugins/bootstrap-sweetalert/sweetalert.css"  %>
+
+    
+    <%= javascript_include_tag "/assets/script/bootstrap-paginator.min.js" %>
+
+    <%= javascript_include_tag "/assets/script/avalon.min.js" %>
+  <%= stylesheet_link_tag  "/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" %>
+  <%= stylesheet_link_tag  "/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" %>
+  <%= javascript_include_tag "/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %>
+  <%= javascript_include_tag  "/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" %>
+  <%= javascript_include_tag "/assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" %>
+    
+    <%= javascript_include_tag "/assets/script/hucommd.js?body=1" %>
+    
+    
+    
+
+
+<%= stylesheet_link_tag "/assets/global/plugins/bootstrap-toastr/toastr.min.css"%>
+<%= javascript_include_tag "/assets/global/plugins/bootstrap-toastr/toastr.min.js"%>
+
+    
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <style>
+      .table th,
+      .table td {
+        text-align: center;
+      }
+      
+      body {
+        font-family: "Microsoft YaHei" !important;
+      }
+      .portlet{
+      background-color: #fff;
+      box-shadow: 0 0 10px 3px #ddd;
+      margin: 10px 0px 10px 0px;
+      padding: 15px;
+      -webkit-border-radius: 10px!important;
+      -moz-border-radius: 10px!important;
+      border-radius:10px!important;
+      }
+
+      
+      .ms-controller{
+         visibility: hidden
+      }
+      .modal-content{
+        margin-top:20%;
+      }
+      select2-container--open{
+        z-index:9999999         
+      }
+      .zscgMr{
+        margin-right:8px;
+      }
+      
+    </style>
+    <!--<link rel="shortcut icon" href="favicon.ico">-->
+</head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+
+
+  <%= render 'layouts/top_menu' %>
+ 
+  <div class="clearfix" style="margin-top:-18px;"> </div>
+  <!-- END HEADER & CONTENT DIVIDER -->
+  <!-- BEGIN CONTAINER -->
+  <div class="page-container" style="background-color:white" /> 
+  <%= render 'layouts/left_menu' %>
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div style="background:#f0f2f5;" class="page-content ">
+      
+      <div style="margin-bottom:10px;margin-top:-25px;" class="row" id="main-div" ms-controller=<%="#{params[:action]}_#{params[:controller]}"%>>
+         <h3><%=@currAction[:name]%></h3>
+         <%= yield %>
+      </div>
+     
+
+    </div>
+
+    <a href="javascript:;" class="page-quick-sidebar-toggler">
+      <i class="icon-login"></i>
+    </a>
+
+  </div>
+
+
+    
+</html>

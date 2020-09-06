@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+
+<head>
+    <meta charset="utf-8" />
+    <title> the blue hearts的博客</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <%= javascript_include_tag "/assets/global/plugins/jquery.min.js" %>
+    <%= stylesheet_link_tag "/assets/global/css/components.min.css"  %>
+    <%= stylesheet_link_tag "/assets/pages/css/profile.min.css"  %>
+    <%= stylesheet_link_tag "/assets/apps/css/todo.min.css"  %>
+    <%= javascript_include_tag "/assets/script/hucommd.js" %>
+    <%= stylesheet_link_tag "/assets/global/plugins/font-awesome/css/font-awesome.min.css"  %>
+    <%= stylesheet_link_tag "/assets/global/plugins/bootstrap/css/bootstrap.min.css"  %>
+    <%= javascript_include_tag "/assets/script/bootstrap-paginator.min.js" %>
+
+    <%= javascript_include_tag "/assets/script/avalon.min.js" %>
+     <%= javascript_include_tag "/assets/script/hucommd.js?body=1" %>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <style>
+.weixin-tip {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            filter: alpha(opacity=80);
+            height: 100%;
+            width: 100%;
+            z-index: 100;
+        }
+.weixin-tip p {
+                text-align: center;
+                margin-top: 10%;
+                padding: 0 5%;
+            }
+ .img {
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background:#f2f3f8;
+        }
+</style>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+</head>
+<!-- END HEAD -->
+
+<body>
+    <div class="content" style="text-align:center;padding:10px;"  ms-controller=<%="#{params[:action]}_#{params[:controller]}"%> >
+        <div class="row" >
+            <div class="col-md-2 ">
+                <!-- PORTLET MAIN -->
+                <div class="portlet light profile-sidebar-portlet leftBox">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2992681074,4109741241&fm=26&gp=0.jpg" class="img-responsive" alt=""> </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name"> the blue hearts </div>
+                        <div class="profile-usertitle-job"> 分享博客 </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <a href="/sys_users/sign_in" type="button" class="btn btn-circle green btn-sm">后台入口</a>
+                       
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                   
+                    <!-- END MENU -->
+                </div>
+                <!-- END PORTLET MAIN -->
+                <!-- PORTLET MAIN -->
+                
+                <!-- END PORTLET MAIN -->
+               
+            </div>
+            <div class="col-md-10">
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</html>

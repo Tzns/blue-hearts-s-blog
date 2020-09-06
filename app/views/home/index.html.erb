@@ -1,0 +1,10 @@
+<div class="row portlet light text-left" ms-for="s in @data"> 
+    <div class="col-md-12" >
+        <h3 class="uppercase profile-stat-title text-left">{{s.title}} </h3>
+        <p class="content_sy">{{s.word_content}}</p>
+        <a class="profile-desc-link" ms-attr="{'href':'/home/info?id='+s.id}">阅读更多</a> <span class="content_sy" style="margin-left:20px;">点击{{s.click_count}}</span>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="text-center" id="example"></div>
+</div
