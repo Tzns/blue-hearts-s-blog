@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   get 'back/index'
   get 'back/word'
+  post 'back/_getDataPageData'
   post '/back/_insert_blog'
   post '/back/_update_blog'
   post '/back/_del_blog'

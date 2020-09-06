@@ -1,59 +1,41 @@
 class BackController < ApplicationController
-    before_filter :load_application_wide_varibales
-    private
-      def load_application_wide_varibales
-        controller=params[:controller]
-        action=params[:action]
-
-        
-        if !sys_user_signed_in?
-          return redirect_to "/sys_users/sign_in"
-        end
-        
-        
-        #菜单高亮
-        menuModels=deep_copy $menus
-        #当前菜单模型
-        currAction=menuModels.find{|a| a[:controller]==controller and a[:action]==action}
-        @currAction=currAction
-
-        #p menuModels.select{|a| a[:pid]==36}
-        menuModels.each do |m|
-          m.delete(:Active)
-          # p "#{m[:controller]}-#{controller}"
-          if m[:pid]==0 and m[:controller]==controller
-            m.store(:Active,true)
-            next
-          end
-          if m[:controller]==controller and m[:action]==action
-             m.store(:Active,true)
-          end
-        end
-        @menuModels=menuModels
-    end
+    before_filter :authenticate_sys_user!
     
     def index
-        p ""
-        @blog_total_count=MBlog.count
-        @blog_click_total_count=MBlog.sum(:click_count)
-        max=MBlog.pluck("max(click_count)").first.to_i
-        min=MBlog.pluck("min(click_count)").first.to_i
-        @blog_click_max=MBlog.find_by(click_count: max)[:title]
-        @blog_click_min=MBlog.find_by(click_count: min)[:title]
+        user=current_sys_user
+        query=MBlog.where(create_id: user[:id])
+        @blog_total_count=query.count
+        @blog_click_total_count=query.sum(:click_count)
+        max=query.pluck("max(click_count)").first.to_i
+        min=query.pluck("min(click_count)").first.to_i
+        if max!=0
+            @blog_click_max=query.find_by(click_count: max)[:title]
+        end
+        if min!=0
+            @blog_click_min=query.find_by(click_count: min)[:title]
+        end
         
         cvtSql="CONVERT(varchar(100), created_at, 111)"
         r={}
-        arr= MBlog
-                .group(cvtSql)
-                .order("#{cvtSql} desc")
-                .limit(10)
-                .pluck("#{cvtSql} dt","count(created_at) ct")
-                .to_a
+        arr= query.group(cvtSql)
+                  .order("#{cvtSql} desc")
+                  .limit(10)
+                  .pluck("#{cvtSql} dt","count(created_at) ct")
+                  .to_a
         arr.each do |m|
             r[Date.parse(m[0])]=m[1]
         end
         @line_data=r
     end
+    
+    
+    def _getDataPageData
+        user=current_sys_user
+        data=MBlog.where(create_id: user[:id]).order("created_at desc").page(params)
+        
+        return succ data,""
+    end
+    
     
     def word
     end
@@ -64,6 +46,7 @@ class BackController < ApplicationController
         if title==""
             return err "标题不可为空"
         end
+        user=current_sys_user
         m=MBlog.find_by(title: title)
         if m!=nil
             return err "已存在相同标题文章"
@@ -72,6 +55,7 @@ class BackController < ApplicationController
             :title=>title,
             :word_content=>content,
             :click_count=>rand(1..1000),
+            :create_id=>user[:id]
         })
         if add.save
             return succ nil,"添加成功"
@@ -90,6 +74,7 @@ class BackController < ApplicationController
         if title==""
             return err "标题不可为空"
         end
+        user=current_sys_user
         m=MBlog.find_by(id: id)
         if m==nil
             return err "没有找到该文章"
@@ -120,7 +105,4 @@ class BackController < ApplicationController
         end
     end
    
-    
-    
-    
 end

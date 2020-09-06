@@ -7,7 +7,7 @@ word_back=avalon.define
     data:[]
     getData:->
         vm=this
-        $.post '/home/_getIndexPageData',vm.input,(data)-> 
+        $.post '/back/_getDataPageData',vm.input,(data)-> 
             if data.IsSuccess
                 pageOptions.totalPages = data.Data.PageCount
                 pageOptions.currentPage = data.Data.PageIndex
