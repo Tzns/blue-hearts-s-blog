@@ -28,6 +28,7 @@ class HomeController < ActionController::Base
         if model==nil
             return redirect_to "/404.html"
         end
+        model.addClickCount()
         @model=model
     end
     
